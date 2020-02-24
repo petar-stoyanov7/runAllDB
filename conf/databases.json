@@ -10,10 +10,7 @@
     }
   },
   "databases": [
-    "24bettle",
-    "bbets",
-    "big5casino",
-    "casinosieger",
-    "rembrandtcasino"
+    "database1",
+    "database2",
   ]
 }
