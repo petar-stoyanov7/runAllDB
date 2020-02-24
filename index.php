@@ -17,11 +17,11 @@
 <?php
 require_once('./db/DB.php');
 $DB = new DB();
+$sql = file_get_contents('./conf/queries.sql');
 
 function runAllDb($databases, $queries)
 {
-//if we use SQL file
-    $sql = file_get_contents('./conf/queries.sql');
+    $DB = new DB();
     foreach ($databases as $db) {
         if (is_array($queries)) {
             foreach ($queries as $query) {
