@@ -1,20 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./css/main.css">
-    <title>Database manipulation</title>
-</head>
-<body>
-<header class="main-header">
-    <h1>Run on databases</h1>
-</header>
-
-
 <?php
+$title = 'Run on databases';
+require_once('header.php');
 require_once('./db/DB.php');
 $DB = new DB();
 $sql = file_get_contents('./conf/queries.sql');
@@ -86,6 +72,31 @@ function runAllDb($databases, $queries)
         <a class="run" href="index.php">Clear</a>
     </div>
     <?php endif; ?>
+</div>
+
+<div class="container">
+<div class="content">
+    <form enctype="multipart/form-data" method="post" action="import.php">
+        <div class="flex-container">
+            <div class="flex-item">
+                <label for="table-name">Table name:</label>
+                <input type="text" name="table-name" id="table-name">
+                <input type="file" name="import-file" id="import-file">
+            </div>
+            <div class="flex-item">
+                <h4>Database</h4>
+                <select name="database">
+                    <?php foreach ($DB->getDatabases(true) as $database) : ?>
+                        <option value="<?= $database?>"><?=$database?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="flex-item">
+                <button class="run" type="submit" name="submit">Import to DB</button>
+            </div>
+        </div>
+    </form>
+</div>
 </div>
 
 

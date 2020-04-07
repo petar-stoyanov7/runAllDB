@@ -2,6 +2,7 @@
 class DB
 {
     private $databases;
+    private $testDatabases;
     private $config;
 
     public function __construct()
@@ -10,6 +11,7 @@ class DB
         $dbSettings = json_decode($dbSettings, true);
 
         $this->databases = $dbSettings['databases'];
+        $this->testDatabases = $dbSettings['testDatabases'];
         $this->config = $dbSettings['settings'];
     }
 
@@ -35,9 +37,12 @@ class DB
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getDatabases()
+    public function getDatabases($test = false)
     {
-        return $this->databases;
+        if (!$test) {
+            return $this->databases;
+        }
+        return array_merge($this->databases, $this->testDatabases);
     }
 
 

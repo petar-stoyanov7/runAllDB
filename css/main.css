@@ -42,6 +42,7 @@ header h1 {
 .flex-item {
     flex: 0 50%;
     margin-left: 0 auto;
+    margin-bottom: 10px;
 }
 
 span.query-title {
